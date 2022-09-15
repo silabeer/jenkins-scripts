@@ -1,19 +1,22 @@
+def code
 pipeline {
   agent any
   stages {
-    stage('Hello') {
+    stage('stage 1') {
       steps {
-        sh 'echo "Hello World"'
+        sh 'echo "stage 1"'
+        script {
+           code = load 'scripts/hello.groovy'
+            code.example1()
+        }
       }
     }
     stage('stage 2') {
       steps {
-        sh 'echo "Hello World 2"'
-      }
-    }
-    stage('stage 3') {
-      steps {
-        sh 'echo "Hello World 3"'
+        sh 'echo "stage 2"'
+        script {
+            code.example2()
+        }
       }
     }
   }
